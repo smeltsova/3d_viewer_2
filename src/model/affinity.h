@@ -12,6 +12,8 @@
 #ifndef SRC_MODEL_AFFINITY_H_
 #define SRC_MODEL_AFFINITY_H_
 
+#include "object.h"
+#include <cmath>
 
 namespace s21 {
 
@@ -20,17 +22,19 @@ namespace s21 {
   // Определение всех возможных преобразований
   class Translation {
     public:
-      void transform(ObjectData &obj, float &x, float &y, float &z);
+      void transform(ObjectData &obj, float tx, float ty, float tz);
+      float moveToCenter(ObjectData &obj);
+      void findMinMax(ObjectData &obj);
   };
 
   class Rotation {
     public:
-      void transform(ObjectData &obj, float &angle, char& axis);
+      void transform(ObjectData &obj, float angle, char axis);
   };
 
   class Scaling {
     public:
-      void transform(ObjectData &obj, float &Sx, float &Sy, float &Sz);
+      void transform(ObjectData &obj, float Sx, float Sy, float Sz);
   };
 
   class Transformator {
@@ -38,7 +42,6 @@ namespace s21 {
       Translation translation;
       Rotation rotation;
       Scaling scaling;
-      void findMinMax(ObjectData &obj);
   };
 
   class TransformatorBuilder {
