@@ -1,10 +1,20 @@
 #include "parser.h"
 
+#include <iostream>
+
 namespace s21 {
+
+FileReader* FileReader::getInstance() {
+  if (!instance) {
+    instance = new FileReader();
+  }
+  return instance;
+}
+
 ObjectData FileReader::parseObject(std::string filename) {
   file_.open(filename);
   if (!file_.is_open()) {
-    throw std::runtime_error("Failed to open file"); //?
+    throw std::runtime_error("Failed to open file");  //?
   }
   ObjectData objectData;
   objectData.name = readObjectName(filename);
@@ -62,3 +72,26 @@ void FileReader::parseFace(std::istringstream& iss, ObjectData& objectData) {
 }
 
 }  // namespace s21
+
+// using namespace s21;
+
+// // FileReader* FileReader::instance = nullptr;
+
+// int main() {
+//   // Get the singleton instance of FileReader
+//   FileReader* fileReader = FileReader::getInstance();
+
+//   ObjectData objectData = fileReader->parseObject("dragon.obj");
+
+//   // Example usage
+//   std::cout << "Vertex count: " << objectData.vertexNumber << std::endl;
+//   std::cout << "Edge count: " << objectData.edgesNumber << std::endl;
+
+//   ObjectData objectData2 = fileReader->parseObject("cat.obj");
+
+//   // Example usage
+//   std::cout << "Vertex count: " << objectData2.vertexNumber << std::endl;
+//   std::cout << "Edge count: " << objectData2.edgesNumber << std::endl;
+
+//   return 0;
+// }
