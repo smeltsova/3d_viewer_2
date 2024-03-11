@@ -12,19 +12,20 @@
 namespace s21 {
 
 class FileReader {
- private:
+ //private:
+  public:
   FileReader() {}
   FileReader(const FileReader &other) = delete;
   FileReader &operator=(const FileReader &other) = delete;
 
  public:
- ObjectData FileReader::parseObject(std::string filename);
- std::string readObjectName(const std::string& filename);
+  std::ifstream file_{};
 
-  //---------------------------
-  int fillArrays(FILE *file, ObjectData *obj);
-  int parsePoligon(char *line, ObjectData *obj);
-  void free_ObjectData(ObjectData *obj);
+  ObjectData parseObject(std::string filename);
+  std::string readObjectName(const std::string &filename);
+  void parseVerticesAndFaces(ObjectData &objectData);
+  void parseVertex(std::istringstream &iss, ObjectData &objectData);
+  void parseFace(std::istringstream &iss, ObjectData &objectData);
 };
 }  // namespace s21
 
