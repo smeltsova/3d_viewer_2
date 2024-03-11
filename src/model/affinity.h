@@ -12,8 +12,8 @@
 #ifndef SRC_MODEL_AFFINITY_H_
 #define SRC_MODEL_AFFINITY_H_
 
-#include "object.h"
 #include <cmath>
+#include "object.h"
 
 namespace s21 {
 
@@ -46,23 +46,23 @@ namespace s21 {
 
   class TransformatorBuilder {
     public:
-      TransformatorBuilder() : transformator(0) {};
-      virtual ~TransformatorBuilder() {}
-      virtual void createTransformator();
-      virtual void buildTranslation() {}
-      virtual void buildRotation() {}
-      virtual void buildScaling() {}
-      virtual Transformator *getTransformator() { return transformator; }
+      TransformatorBuilder() { transformator = nullptr; };
+      virtual ~TransformatorBuilder();
+      virtual void createTransformator() {};
+      virtual void buildTranslation() {};
+      virtual void buildRotation() {};
+      virtual void buildScaling() {};
+      virtual Transformator *getTransformator() { return transformator; };
     protected:
       Transformator *transformator;
   };
 
   class AllTransformationBuilder : public TransformatorBuilder {
     public:
-      void createTransformator() { transformator = new Transformator; }
-      void buildTranslation() { transformator->translation = Translation(); }
-      void buildRotation() { transformator->rotation = Rotation(); }
-      void buildScaling() { transformator->scaling = Scaling(); }
+      void createTransformator() { transformator = new Transformator; };
+      void buildTranslation() { transformator->translation = Translation(); };
+      void buildRotation() { transformator->rotation = Rotation(); };
+      void buildScaling() { transformator->scaling = Scaling(); };
   };
 
   class Director {
@@ -81,9 +81,9 @@ namespace s21 {
 * Director dr;
 * AllTransformationBuilder allBuilder;
 * Transformator *tr = dir.createTransformator( allBuilder );
-* tr->translation->transform(obj, x, y, z);
-* tr->rotation->transform(obj, angle, axis);
-* tr->scaling->transform(obj, Sx, Sy, Sz);
+* tr->translation.transform(obj, x, y, z);
+* tr->rotation.transform(obj, angle, axis);
+* tr->scaling.transform(obj, Sx, Sy, Sz);
 */
 
 #endif // SRC_MODEL_AFFINITY_H_

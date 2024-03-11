@@ -1,5 +1,11 @@
 #include "affinity.h"
 
+s21::TransformatorBuilder::~TransformatorBuilder() {
+  if (transformator) {
+    delete transformator;
+  }
+};
+
 void s21::Translation::findMinMax(ObjectData &obj) {
   unsigned i = 0;
   if (obj.vertexNumber != 0) {
