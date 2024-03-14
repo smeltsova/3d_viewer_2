@@ -37,6 +37,7 @@ std::string FileReader::readObjectName(const std::string& filename) {
 void FileReader::parseVerticesAndFaces(ObjectData& objectData) {
   std::string line;
   while (std::getline(file_, line)) {
+    std::cout << line;
     std::istringstream iss(line);
     std::string token;
     iss >> token;
@@ -58,6 +59,8 @@ void FileReader::parseFace(std::istringstream& iss, ObjectData& objectData) {
   std::vector<unsigned> vertices;
   unsigned index;
   while (iss >> index) {
+    // Skip the slash and the following indices
+    iss.ignore(std::numeric_limits<std::streamsize>::max(), ' ');
     vertices.push_back(index - 1);  // OBJ uses 1-based indexing
   }
 
@@ -75,23 +78,25 @@ void FileReader::parseFace(std::istringstream& iss, ObjectData& objectData) {
 
 // using namespace s21;
 
-// // FileReader* FileReader::instance = nullptr;
+// //FileReader* FileReader::instance = nullptr;
 
 // int main() {
 //   // Get the singleton instance of FileReader
 //   FileReader* fileReader = FileReader::getInstance();
 
-//   ObjectData objectData = fileReader->parseObject("dragon.obj");
+//   ObjectData objectData = fileReader->parseObject("cube.obj");
 
 //   // Example usage
 //   std::cout << "Vertex count: " << objectData.vertexNumber << std::endl;
 //   std::cout << "Edge count: " << objectData.edgesNumber << std::endl;
+//   std::cout << "Name: " << objectData.name << std::endl;
 
-//   ObjectData objectData2 = fileReader->parseObject("cat.obj");
+//   ObjectData objectData2 = fileReader->parseObject("dragon.obj");
 
 //   // Example usage
 //   std::cout << "Vertex count: " << objectData2.vertexNumber << std::endl;
 //   std::cout << "Edge count: " << objectData2.edgesNumber << std::endl;
+//   std::cout << "Name: " << objectData2.name << std::endl;
 
 //   return 0;
 // }
