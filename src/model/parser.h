@@ -16,12 +16,13 @@ class FileReader {
   FileReader() {}
   FileReader(const FileReader &) = delete;
   FileReader &operator=(const FileReader &) = delete;
+
   inline static FileReader *instance = nullptr;
   std::ifstream file_{};
 
  public:
   static FileReader *getInstance();
-  ObjectData parseObject(std::string filename);
+  bool parseObject(std::string filename, ObjectData &objectData);
   std::string readObjectName(const std::string &filename);
   void parseVerticesAndFaces(ObjectData &objectData);
   void parseVertex(std::istringstream &iss, ObjectData &objectData);
