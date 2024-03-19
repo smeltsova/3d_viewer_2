@@ -30,6 +30,14 @@ class ObjectData {
     edgesArray.push_back(v2);
     edgesNumber++;
   }
+
+  void clear() {
+    vertexArray.clear();
+    edgesArray.clear();
+    vertexNumber = 0;
+    edgesNumber = 0;
+    name.clear();
+  }
 };
 }  // namespace s21
 
