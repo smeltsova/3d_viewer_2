@@ -9,6 +9,7 @@
 #include "./QtGifImage/gifimage/qgifimage.h"
 
 #include "../model/affinity.h"
+#include "../controller/controller.h"
 // #include "../model/parser.h"
 
 namespace s21 {
@@ -44,16 +45,15 @@ namespace s21 {
     void resizeGL(int w, int h) override;
 
   private:
-    Transformator *tr;
     float xRot = 0, yRot = 0, zRot = 0;
     float dx = 0, dy = 0, dz = 0;
     float xScale = 1, yScale = 1, zScale = 1;
-    void initSettings();
     int vertex_size = 10;
     int edge_size = 1;
     int vertex_mode = 1;
     int edge_mode = 0;
     int projection_type = 0;
+    void initSettings();
     void setupPerspective();
     void drawPoints();
     void drawLines();

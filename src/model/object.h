@@ -16,6 +16,8 @@ namespace s21 {
       std::array<float, 3> min;
       std::array<float, 3> max;
       float maxCoord;
+
+      void freeObject();
   };
 }
 

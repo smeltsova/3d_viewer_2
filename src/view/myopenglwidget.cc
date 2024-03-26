@@ -1,15 +1,15 @@
-#include "glview.h"
+#include "myopenglwidget.h"
 
-s21::MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) : QOpenGLWidget{parent} {
-  Director dr;
-  AllTransformationBuilder allBuilder;
-  tr = dr.createTransformator( allBuilder );
-}
+// s21::MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) : QOpenGLWidget{parent} {
+//   Director dr;
+//   AllTransformationBuilder allBuilder;
+//   trObject = dr.createTransformator( allBuilder );
+// }
 
-s21::MyOpenGLWidget::~MyOpenGLWidget() { 
-  free_obj_data(&obj);
-  delete tr;
-}
+// s21::MyOpenGLWidget::~MyOpenGLWidget() {
+//   obj.freeObject();
+//   delete trObject;
+// }
 
 void s21::MyOpenGLWidget::initializeGL() {
   initializeOpenGLFunctions();
@@ -82,75 +82,6 @@ void s21::MyOpenGLWidget::drawLines() {
                  &obj.edgesArray);
   if (edge_mode == 1) {
     glDisable(GL_LINE_STIPPLE);
-  }
-}
-
-void s21::MyOpenGLWidget::setXTranslate(const QString &new_x) {
-  float new_dx = new_x.toFloat();
-  tr->translation.transform(obj, new_dx - dx, 0, 0);
-  dx = new_dx;
-  update();
-}
-
-void s21::MyOpenGLWidget::setYTranslate(const QString &new_y) {
-  float new_dy = new_y.toFloat();
-  tr->translation.transform(obj, 0, new_dy - dy, 0);
-  dy = new_dy;
-  update();
-}
-
-void s21::MyOpenGLWidget::setZTranslate(const QString &new_z) {
-  float new_dz = new_z.toFloat();
-  tr->translation.transform(obj, 0, 0, new_dz - dz);
-  dz = new_dz;
-  update();
-}
-
-void s21::MyOpenGLWidget::setXRotate(const QString &deg) {
-  float new_deg = deg.toFloat();
-  tr->rotation.transform(obj, new_deg - xRot, 'x');
-  xRot = new_deg;
-  update();
-}
-
-void s21::MyOpenGLWidget::setYRotate(const QString &deg) {
-  float new_deg = deg.toFloat();
-  tr->rotation.transform(obj, new_deg - yRot, 'y');
-  yRot = new_deg;
-  update();
-}
-
-void s21::MyOpenGLWidget::setZRotate(const QString &deg) {
-  float new_deg = deg.toFloat();
-  tr->rotation.transform(obj, new_deg - zRot, 'z');
-  zRot = new_deg;
-  update();
-}
-
-void s21::MyOpenGLWidget::setXScale(const QString &scale) {
-  float new_scale = scale.toFloat();
-  if (new_scale != 0) {
-    tr->scaling.transform(obj, new_scale / xScale, 1, 1);
-    xScale = new_scale;
-    update();
-  }
-}
-
-void s21::MyOpenGLWidget::setYScale(const QString &scale) {
-  float new_scale = scale.toFloat();
-  if (new_scale != 0) {
-    tr->scaling.transform(obj, 1, new_scale / yScale, 1);
-    yScale = new_scale;
-    update();
-  }
-}
-
-void s21::MyOpenGLWidget::setZScale(const QString &scale) {
-  float new_scale = scale.toFloat();
-  if (new_scale != 0) {
-    tr->scaling.transform(obj, 1, 1, new_scale / zScale);
-    zScale = new_scale;
-    update();
   }
 }
 
