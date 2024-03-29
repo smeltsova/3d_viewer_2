@@ -4,8 +4,8 @@ EFLAGS = -Wall -Werror -Wextra
 TFLAGS = -lgtest -lgtest_main
 MFLAGS = -fsanitize=address
 DEBUG = -g
-SRC_FILES = model/affinity.cc model/object.h
-TEST_FILES = tests/test_affinity.cc
+SRC_FILES = model/affinity.cc model/parser.cc model/object.h
+TEST_FILES = tests/test_affinity.cc tests/test_parser.cc
 
 .PHONY:
 	all install uninstall dvi dist test clean gcov_report valgrind build check_style fix_style

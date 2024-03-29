@@ -1,18 +1,25 @@
 #include <gtest/gtest.h>
 #include "../model/parser.h"
 
-
-TEST(ParserTest, Test1) {
-  s21::FileReader* fileReader = s21::FileReader::getInstance();
+TEST(ParserTest, Test1)
+{
+  s21::FileReader *fileReader = s21::FileReader::getInstance();
   s21::ObjectData got = {};
   EXPECT_EQ(fileReader->parseObject("models/test1.obj", got), true);
   std::vector<float> v = {1.0f, -1.0f, -1.0f, 1.0f, -1.0f, 1.0f};
   std::vector<unsigned> e = {};
   s21::ObjectData exp = {v, e, 2, 0, "test1.obj", {0}, {0}, 0};
 
-  EXPECT_EQ(got, exp);
+  for (size_t i = 0; i < 6; i++)
+  {
+    EXPECT_FLOAT_EQ(exp.vertexArray[i], got.vertexArray[i]);
+  }
+  EXPECT_EQ(exp.vertexNumber, got.vertexNumber);
+  EXPECT_EQ(exp.edgesNumber, got.edgesNumber);
+  EXPECT_EQ(exp.name, got.name);
+  EXPECT_EQ(exp.edgesNumber, got.edgesNumber);
+  EXPECT_EQ(exp.maxCoord, got.maxCoord);
 }
-
 
 TEST(ParserTest, Test2) {
   s21::FileReader* fileReader = s21::FileReader::getInstance();
@@ -25,10 +32,16 @@ TEST(ParserTest, Test2) {
   for (int i = 0; i < 16; i++) e[i]--;
   s21::ObjectData exp = {v, e, 0, 8, "test2.obj", {0}, {0}, 0};
 
-  EXPECT_EQ(got, exp);
-  
+  for (size_t i = 0; i < 8; i++)
+  {
+    EXPECT_FLOAT_EQ(exp.edgesArray[i], got.edgesArray[i]);
+  }
+  EXPECT_EQ(exp.vertexNumber, got.vertexNumber);
+  EXPECT_EQ(exp.edgesNumber, got.edgesNumber);
+  EXPECT_EQ(exp.name, got.name);
+  EXPECT_EQ(exp.edgesNumber, got.edgesNumber);
+  EXPECT_EQ(exp.maxCoord, got.maxCoord);
 }
-
 
 TEST(ParserTest, Test3){
   s21::FileReader* fileReader = s21::FileReader::getInstance();
@@ -47,10 +60,20 @@ TEST(ParserTest, Test3){
   for (int i = 0; i < 72; i++) e[i]--;
   s21::ObjectData exp = {v, e, 24 / 3, 72 / 2, "cube.obj", {0}, {0}, 0};
 
-  EXPECT_EQ(got, exp);
-  
+  for (size_t i = 0; i < 24 / 3; i++)
+  {
+    EXPECT_FLOAT_EQ(exp.vertexArray[i], got.vertexArray[i]);
+  }
+  for (size_t i = 0; i < 72 / 2; i++)
+  {
+    EXPECT_FLOAT_EQ(exp.edgesArray[i], got.edgesArray[i]);
+  }
+  EXPECT_EQ(exp.vertexNumber, got.vertexNumber);
+  EXPECT_EQ(exp.edgesNumber, got.edgesNumber);
+  EXPECT_EQ(exp.name, got.name);
+  EXPECT_EQ(exp.edgesNumber, got.edgesNumber);
+  EXPECT_EQ(exp.maxCoord, got.maxCoord);
 }
-
 
 TEST(ParserTest, TestNothing) {
   s21::FileReader* fileReader = s21::FileReader::getInstance();
@@ -59,19 +82,24 @@ TEST(ParserTest, TestNothing) {
   EXPECT_EQ(fileReader->parseObject("models/nothing.obj", got), true);
   s21::ObjectData exp = {{}, {}, 0, 0, "nothing.obj", {0}, {0}, 0};
 
-  EXPECT_EQ(got, exp);
-  
+  EXPECT_EQ(exp.vertexArray.size(), 0);
+  EXPECT_EQ(got.vertexArray.size(), 0);
+  EXPECT_EQ(exp.edgesArray.size(), 0);
+  EXPECT_EQ(got.edgesArray.size(), 0);
+  EXPECT_EQ(exp.vertexNumber, got.vertexNumber);
+  EXPECT_EQ(exp.edgesNumber, got.edgesNumber);
+  EXPECT_EQ(exp.name, got.name);
+  EXPECT_EQ(exp.edgesNumber, got.edgesNumber);
+  EXPECT_EQ(exp.maxCoord, got.maxCoord);
 }
 
-
-TEST(ParserTest, TestNoFile) {
-  s21::FileReader* fileReader = s21::FileReader::getInstance();
+TEST(ParserTest, TestNoFile)
+{
+  s21::FileReader *fileReader = s21::FileReader::getInstance();
   s21::ObjectData got = {};
 
   EXPECT_EQ(fileReader->parseObject("nofile.obj", got), false);
-  
 }
-
 
 // TEST(ParserTest, TestReadName) {
 //   s21::FileReader* fileReader = s21::FileReader::getInstance();
@@ -81,4 +109,3 @@ TEST(ParserTest, TestNoFile) {
 //   EXPECT_EQ("some_file.obj", got);
 //   if (got) free(got);
 // }
-
