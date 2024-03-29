@@ -101,8 +101,9 @@ namespace s21 {
     void slotTimer();
 
 
-    void setXTranslate(const QString &new_x);
-    void setYTranslate(const QString &new_y);
+    // void setXTranslate(const QString &new_x);
+    // void setYTranslate(const QString &new_y);
+    // void setZTranslate(const QString &new_z);
 
   private:
     Ui::MainWindow *ui;
@@ -112,7 +113,7 @@ namespace s21 {
     QImage *image;
     int frame_count = 0;
     s21::Controller &controller_;
-    s21::ObjectData &obj;
+    // s21::ObjectData &obj_;
   };
 }
 #endif  // SRC_VIEW_VIEW_H_

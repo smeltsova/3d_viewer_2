@@ -1,15 +1,15 @@
 #include "myopenglwidget.h"
 
-// s21::MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) : QOpenGLWidget{parent} {
-//   Director dr;
-//   AllTransformationBuilder allBuilder;
-//   trObject = dr.createTransformator( allBuilder );
-// }
+s21::MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) : QOpenGLWidget{parent} {
+  // Director dr;
+  // AllTransformationBuilder allBuilder;
+  // trObject = dr.createTransformator( allBuilder );
+}
 
-// s21::MyOpenGLWidget::~MyOpenGLWidget() {
-//   obj.freeObject();
-//   delete trObject;
-// }
+s21::MyOpenGLWidget::~MyOpenGLWidget() {
+  obj.freeObject();
+  // delete obj;
+}
 
 void s21::MyOpenGLWidget::initializeGL() {
   initializeOpenGLFunctions();
@@ -108,4 +108,52 @@ void s21::MyOpenGLWidget::changeEdgeMode(int mode) {
 void s21::MyOpenGLWidget::changeProjectionType(int type) {
   projection_type = type;
   update();
+}
+
+void s21::MyOpenGLWidget::setDx(float value) {
+  dx = value;
+}
+
+void s21::MyOpenGLWidget::setDy(float value) {
+  dy = value;
+}
+
+void s21::MyOpenGLWidget::setDz(float value) {
+  dz = value;
+}
+
+float s21::MyOpenGLWidget::getDx() {
+  return dx;
+}
+
+float s21::MyOpenGLWidget::getDy() {
+  return dy;
+}
+
+float s21::MyOpenGLWidget::getDz() {
+  return dz;
+}
+
+void s21::MyOpenGLWidget::setXRot(float value) {
+  xRot = value;
+}
+
+void s21::MyOpenGLWidget::setYRot(float value) {
+  yRot = value;
+}
+
+void s21::MyOpenGLWidget::setZRot(float value) {
+  zRot = value;
+}
+
+float s21::MyOpenGLWidget::getXRot() {
+  return xRot;
+}
+
+float s21::MyOpenGLWidget::getYRot() {
+  return yRot;
+}
+
+float s21::MyOpenGLWidget::getZRot() {
+  return zRot;
 }

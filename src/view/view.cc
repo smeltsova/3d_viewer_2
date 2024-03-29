@@ -6,6 +6,7 @@ s21::MainWindow::MainWindow(s21::Controller &controller, QWidget *parent)
     : QMainWindow(parent), controller_(controller), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   setWindowTitle("3DViewer_v2.0");
+  // obj_ = ui->widget.obj;
 
   timer = new QTimer;
   image = new QImage[50]{};
@@ -26,31 +27,31 @@ s21::MainWindow::~MainWindow() {
 }
 
 void s21::MainWindow::connectSetup() {
-  connect(ui->doubleSpinBox_translate_x, &QDoubleSpinBox::textChanged,
-          ui->widget, &MyOpenGLWidget::setXTranslate);
-  connect(ui->doubleSpinBox_translate_y, &QDoubleSpinBox::textChanged,
-          ui->widget, &MyOpenGLWidget::setYTranslate);
-  connect(ui->doubleSpinBox_translate_z, &QDoubleSpinBox::textChanged,
-          ui->widget, &MyOpenGLWidget::setZTranslate);
+  // connect(ui->doubleSpinBox_translate_x, &QDoubleSpinBox::textChanged,
+  //         ui->widget, &MyOpenGLWidget::setXTranslate);
+  // connect(ui->doubleSpinBox_translate_y, &QDoubleSpinBox::textChanged,
+  //         ui->widget, &MyOpenGLWidget::setYTranslate);
+  // connect(ui->doubleSpinBox_translate_z, &QDoubleSpinBox::textChanged,
+  //         ui->widget, &MyOpenGLWidget::setZTranslate);
 
-  connect(ui->doubleSpinBox_rotate_x, &QDoubleSpinBox::textChanged, ui->widget,
-          &MyOpenGLWidget::setXRotate);
-  connect(ui->doubleSpinBox_rotate_y, &QDoubleSpinBox::textChanged, ui->widget,
-          &MyOpenGLWidget::setYRotate);
-  connect(ui->doubleSpinBox_rotate_z, &QDoubleSpinBox::textChanged, ui->widget,
-          &MyOpenGLWidget::setZRotate);
+  // connect(ui->doubleSpinBox_rotate_x, &QDoubleSpinBox::textChanged, ui->widget,
+  //         &MyOpenGLWidget::setXRotate);
+  // connect(ui->doubleSpinBox_rotate_y, &QDoubleSpinBox::textChanged, ui->widget,
+  //         &MyOpenGLWidget::setYRotate);
+  // connect(ui->doubleSpinBox_rotate_z, &QDoubleSpinBox::textChanged, ui->widget,
+  //         &MyOpenGLWidget::setZRotate);
 
-  connect(ui->doubleSpinBox_scale_x, &QDoubleSpinBox::textChanged, ui->widget,
-          &MyOpenGLWidget::setXScale);
-  connect(ui->doubleSpinBox_scale_y, &QDoubleSpinBox::textChanged, ui->widget,
-          &MyOpenGLWidget::setYScale);
-  connect(ui->doubleSpinBox_scale_z, &QDoubleSpinBox::textChanged, ui->widget,
-          &MyOpenGLWidget::setZScale);
+  // connect(ui->doubleSpinBox_scale_x, &QDoubleSpinBox::textChanged, ui->widget,
+  //         &MyOpenGLWidget::setXScale);
+  // connect(ui->doubleSpinBox_scale_y, &QDoubleSpinBox::textChanged, ui->widget,
+  //         &MyOpenGLWidget::setYScale);
+  // connect(ui->doubleSpinBox_scale_z, &QDoubleSpinBox::textChanged, ui->widget,
+  //         &MyOpenGLWidget::setZScale);
 
-  connect(ui->horizontalScrollBar_size_v, &QScrollBar::valueChanged, ui->widget,
-          &MyOpenGLWidget::changePointSize);
-  connect(ui->horizontalScrollBar_size_e, &QScrollBar::valueChanged, ui->widget,
-          &MyOpenGLWidget::changeLineSize);
+  // connect(ui->horizontalScrollBar_size_v, &QScrollBar::valueChanged, ui->widget,
+  //         &MyOpenGLWidget::changePointSize);
+  // connect(ui->horizontalScrollBar_size_e, &QScrollBar::valueChanged, ui->widget,
+  //         &MyOpenGLWidget::changeLineSize);
 }
 
 void s21::MainWindow::on_pushButton_file_clicked() {
@@ -60,13 +61,16 @@ void s21::MainWindow::on_pushButton_file_clicked() {
   char *result_path = q_path.data();
   ui->widget->obj.freeObject();
   resetPosition();
-  if (parseObj(result_path, &ui->widget->obj) == 0) {
+  // if (parseObj(result_path, &ui->widget->obj) == 0) {
+  if( true ) {
     ui->widget->fileopen = 1;
     ui->label_v_number->setText(QString::number(ui->widget->obj.vertexNumber));
     ui->label_e_number->setText(QString::number(ui->widget->obj.edgesNumber));
     ui->label_file->setText(QString::fromStdString(ui->widget->obj.name));
     ui->statusbar->showMessage(file);
-    tr->translate->moveToCenter(&ui->widget->obj);
+    controller_.toCenter(ui->widget->obj);
+    // controller_.toCenter(obj_);
+    // tr->translate->moveToCenter(&ui->widget->obj);
     ui->horizontalScrollBar_translate_x->setMaximum(
         2 * round(1 + ui->widget->obj.maxCoord) * 10);
     ui->horizontalScrollBar_translate_x->setMinimum(
@@ -214,32 +218,32 @@ void s21::MainWindow::on_radioButton_central_pressed() {
   ui->widget->changeProjectionType(1);
 }
 
-void s21::MainWindow::setXTranslate(const QString &new_x) {
-  float new_dx = new_x.toFloat();
-  controller_.translate(obj, new_dx - dx, 0, 0);
-  ui->widget.dx = new_dx;
-  ui->widget.update();
-}
+// void s21::MainWindow::setXTranslate(const QString &new_x) {
+//   float new_dx = new_x.toFloat();
+//   controller_.translate(ui->widget->obj, new_dx - ui->widget->getDx(), 0, 0);
+//   ui->widget->setDx(new_dx);
+//   ui->widget->update();
+// }
 
 // void s21::MainWindow::setYTranslate(const QString &new_y) {
 //   float new_dy = new_y.toFloat();
-//   controller_.translate(obj, 0, new_dy - dy, 0);
-//   ui->widget.dy = new_dy;
+//   controller_.translate(ui->widget->obj, 0, new_dy - ui->widget->getDy(), 0);
+//   ui->widget->setDy(new_dy);
 //   ui->widget->update();
 // }
 
 // void s21::MyOpenGLWidget::setZTranslate(const QString &new_z) {
 //   float new_dz = new_z.toFloat();
-//   trObject->translation.transform(obj, 0, 0, new_dz - dz);
-//   dz = new_dz;
-//   update();
+//   controller_.translate(ui->widget->obj, 0, new_dz - ui->widget->getDz(), 0);
+//   ui->widget->setDz(new_dz);
+//   ui->widget->update();
 // }
 
 // void s21::MyOpenGLWidget::setXRotate(const QString &deg) {
 //   float new_deg = deg.toFloat();
-//   trObject->rotation.transform(obj, new_deg - xRot, 'x');
-//   xRot = new_deg;
-//   update();
+//   controller_.rotate(ui->widget->obj, new_deg - ui->widget->getXRot(), 'x');
+//   ui->widget->setXRot(new_deg);
+//   ui->widget->update();
 // }
 
 // void s21::MyOpenGLWidget::setYRotate(const QString &deg) {
@@ -356,8 +360,11 @@ void s21::MainWindow::on_pushButton_reset_clicked() {
   QByteArray q_path = file.toLocal8Bit();
   char *result_path = q_path.data();
   ui->widget->obj.freeObject();
-  if (parseObj(result_path, &ui->widget->obj) == 0) {
-    trObject->translate->moveToCenter(&ui->widget->obj);
+  // if (parseObj(result_path, &ui->widget->obj) == 0) {
+  if ( true ) {
+    controller_.toCenter(ui->widget->obj);
+    // controller_.toCenter(obj_);
+    // trObject->translate->moveToCenter(&ui->widget->obj);
   } else {
     ui->widget->fileopen = 0;
     ui->statusbar->clearMessage();

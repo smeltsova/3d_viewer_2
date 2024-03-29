@@ -25,5 +25,3 @@ void s21::Model::rotate(ObjectData &obj, float angle, char axis) {
 void s21::Model::scale(ObjectData &obj, float Sx, float Sy, float Sz) {
   tr_->scaling.transform(obj, Sx, Sy, Sz);
 }
-
-void 

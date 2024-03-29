@@ -8,11 +8,11 @@ SRC_FILES = model/affinity.cc model/object.h
 TEST_FILES = tests/test_affinity.cc
 
 .PHONY:
-	all install uninstall dvi dist tests clean gcov_report valgrind build check_style fix_style
+	all install uninstall dvi dist test clean gcov_report valgrind build check_style fix_style
 
 all: clean tests
 
-tests: clean
+test: clean
 	${CXX} ${CXX_FLAGS} ${EFLAGS} ${DEBUG} ${SRC_FILES} ${TEST_FILES} -o test ${MFLAGS} ${TFLAGS}
 	./test
 

@@ -33,6 +33,20 @@ namespace s21 {
     void setYScale(const QString &new_y);
     void setZScale(const QString &new_z);
 
+    void setDx(float value);
+    void setDy(float value);
+    void setDz(float value);
+    float getDx();
+    float getDy();
+    float getDz();
+
+    void setXRot(float value);
+    void setYRot(float value);
+    void setZRot(float value);
+    float getXRot();
+    float getYRot();
+    float getZRot();
+
     void changePointSize(int size);
     void changeLineSize(int size);
     void changeVertexMode(int mode);

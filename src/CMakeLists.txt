@@ -25,6 +25,10 @@ set(PROJECT_SOURCES
         view/mainwindow.ui
         view/myopenglwidget.cc
         view/myopenglwidget.h
+        model/object.cc
+        model/object.h
+        model/model.cc
+        model/model.h
         # model/parser.cc
         # model/parser.h
         model/affinity.cc

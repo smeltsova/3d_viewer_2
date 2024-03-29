@@ -7,7 +7,7 @@ namespace s21 {
   class Controller {
     public:
       Controller(s21::Model &model) : model_(model) {};
-      ~Controller();
+      ~Controller() {};
 
       void translate(ObjectData &obj, float tx, float ty, float tz);
       void toCenter(ObjectData &obj);
