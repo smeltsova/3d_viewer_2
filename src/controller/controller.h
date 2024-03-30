@@ -3,19 +3,23 @@
 
 #include "model/model.h"
 
-namespace s21 {
-  class Controller {
-    public:
-      Controller(s21::Model &model) : model_(model) {};
-      ~Controller() {};
+namespace s21
+{
+  class Controller
+  {
+  public:
+    Controller(s21::Model &model) : model_(model){};
+    ~Controller(){};
 
-      void translate(ObjectData &obj, float tx, float ty, float tz);
-      void toCenter(ObjectData &obj);
-      void rotate(ObjectData &obj, float angle, char axis);
-      void scale(ObjectData &obj, float Sx, float Sy, float Sz);
+    void translate(ObjectData &obj, float tx, float ty, float tz);
+    void toCenter(ObjectData &obj);
+    void rotate(ObjectData &obj, float angle, char axis);
+    void scale(ObjectData &obj, float Sx, float Sy, float Sz);
 
-    private:
-      s21::Model &model_;
+    bool parseObject(std::string filename, ObjectData &objectData);
+
+  private:
+    s21::Model &model_;
   };
 }
 

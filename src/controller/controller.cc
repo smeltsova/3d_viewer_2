@@ -15,3 +15,7 @@ void s21::Controller::rotate(ObjectData &obj, float angle, char axis) {
 void s21::Controller::scale(ObjectData &obj, float Sx, float Sy, float Sz) {
   model_.scale(obj, Sx, Sy, Sz);
 }
+
+bool s21::Controller::parseObject(std::string filename, ObjectData &objectData) {
+  return model_.parseObject(filename, objectData);
+}

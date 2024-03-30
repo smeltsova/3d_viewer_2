@@ -6,6 +6,8 @@
 #include <QOpenGLFunctions>
 #include <QOpenGLWidget>
 
+#include <algorithm>
+
 #include "./QtGifImage/gifimage/qgifimage.h"
 
 #include "../model/affinity.h"
@@ -23,15 +25,6 @@ namespace s21 {
     QColor backgroundColor = QColorConstants::Black;
     QColor edgeColor = QColorConstants::Green;
     QColor vertexColor = QColorConstants::Red;
-    void setXTranslate(const QString &new_x);
-    void setYTranslate(const QString &new_y);
-    void setZTranslate(const QString &new_z);
-    void setXRotate(const QString &new_x);
-    void setYRotate(const QString &new_y);
-    void setZRotate(const QString &new_z);
-    void setXScale(const QString &new_x);
-    void setYScale(const QString &new_y);
-    void setZScale(const QString &new_z);
 
     void setDx(float value);
     void setDy(float value);
@@ -46,6 +39,13 @@ namespace s21 {
     float getXRot();
     float getYRot();
     float getZRot();
+
+    void setXScale(float value);
+    void setYScale(float value);
+    void setZScale(float value);
+    float getXScale();
+    float getYScale();
+    float getZScale();
 
     void changePointSize(int size);
     void changeLineSize(int size);

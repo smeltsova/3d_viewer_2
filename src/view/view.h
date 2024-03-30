@@ -18,8 +18,10 @@
 QT_BEGIN_NAMESPACE namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-namespace s21 {
-  class MainWindow : public QMainWindow {
+namespace s21
+{
+  class MainWindow : public QMainWindow
+  {
     Q_OBJECT
 
   public:
@@ -100,10 +102,18 @@ namespace s21 {
 
     void slotTimer();
 
-
     // void setXTranslate(const QString &new_x);
-    // void setYTranslate(const QString &new_y);
-    // void setZTranslate(const QString &new_z);
+    void setYTranslate(const QString &new_y);
+    void setZTranslate(const QString &new_z);
+    void setXRotate(const QString &deg);
+    void setYRotate(const QString &deg);
+    void setZRotate(const QString &deg);
+    void setXScale(const QString &scale);
+    void setYScale(const QString &scale);
+    void setZScale(const QString &scale);
+
+  public slots:
+      void setXTranslate(const QString &new_x);
 
   private:
     Ui::MainWindow *ui;
@@ -113,7 +123,6 @@ namespace s21 {
     QImage *image;
     int frame_count = 0;
     s21::Controller &controller_;
-    // s21::ObjectData &obj_;
   };
 }
-#endif  // SRC_VIEW_VIEW_H_
+#endif // SRC_VIEW_VIEW_H_

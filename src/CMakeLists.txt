@@ -29,8 +29,8 @@ set(PROJECT_SOURCES
         model/object.h
         model/model.cc
         model/model.h
-        # model/parser.cc
-        # model/parser.h
+        model/parser.cc
+        model/parser.h
         model/affinity.cc
         model/affinity.h
         controller/controller.cc

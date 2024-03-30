@@ -12,41 +12,19 @@ namespace s21
   {
   public:
     std::vector<float> vertexArray;
-    std::vector<unsigned> edgesArray;
-    unsigned vertexNumber;
-    unsigned edgesNumber;
+    std::vector<unsigned int> edgesArray;
+    unsigned int vertexNumber;
+    unsigned int edgesNumber;
     std::string name;
     std::array<float, 3> min;
     std::array<float, 3> max;
     float maxCoord;
 
     void freeObject();
-    // void addVertex(float x, float y, float z);
-    // void addEdge(unsigned v1, unsigned v2);
-    // void clear();
-    void addVertex(float x, float y, float z)
-    {
-      vertexArray.push_back(x);
-      vertexArray.push_back(y);
-      vertexArray.push_back(z);
-      vertexNumber++;
-    }
-
-    void addEdge(unsigned v1, unsigned v2)
-    {
-      edgesArray.push_back(v1);
-      edgesArray.push_back(v2);
-      edgesNumber++;
-    }
-
-    void clear()
-    {
-      vertexArray.clear();
-      edgesArray.clear();
-      vertexNumber = 0;
-      edgesNumber = 0;
-      name.clear();
-    }
+    void addVertex(float x, float y, float z);
+    void addEdge(unsigned int v1, unsigned int v2);
+    void clear();
+    void print_object();
   };
 } // namespace s21
 
