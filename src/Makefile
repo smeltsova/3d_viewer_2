@@ -28,8 +28,11 @@ install: uninstall build
 uninstall:
 	rm -rf ~/Desktop/3D_Viewer_2
 
-dvi:
-	open docs/html/index.html
+dvi: doxy
+	open docs/doxygen/html/index.html
+
+doxy:
+	doxygen docs/Doxyfile
 
 dist:
 

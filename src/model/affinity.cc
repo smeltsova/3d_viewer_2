@@ -6,6 +6,11 @@ s21::TransformatorBuilder::~TransformatorBuilder() {
   }
 };
 
+/**
+ * @brief A method for finding minimum/maximum vertices
+ *
+ * @param obj - representation of data about an `.obj` file
+ */
 void s21::Translation::findMinMax(ObjectData &obj) {
   unsigned i = 0;
   if (obj.vertexNumber != 0) {
@@ -37,6 +42,12 @@ void s21::Translation::findMinMax(ObjectData &obj) {
   }
 }
 
+/**
+ * @brief The method for centering the object
+ *
+ * @param obj - representation of data about an `.obj` file
+ * @return float - the maximum coordinates of the vertex
+ */
 float s21::Translation::moveToCenter(ObjectData &obj) {
   findMinMax(obj);
   std::array<float, 3> center = {0};
@@ -54,6 +65,14 @@ float s21::Translation::moveToCenter(ObjectData &obj) {
   return dmax;
 }
 
+/**
+ * @brief A method for translation an object
+ *
+ * @param obj - representation of data about an `.obj` file
+ * @param tx - rotation coordinate
+ * @param ty - rotation coordinate
+ * @param tz - rotation coordinate
+ */
 void s21::Translation::transform(ObjectData &obj, float tx, float ty,
                                  float tz) {
   size_t size = obj.vertexNumber * 3;
@@ -64,6 +83,13 @@ void s21::Translation::transform(ObjectData &obj, float tx, float ty,
   }
 }
 
+/**
+ * @brief A method for rotation an object
+ *
+ * @param obj - representation of data about an `.obj` file
+ * @param angle - the angle of rotation
+ * @param axis - the axis of rotation
+ */
 void s21::Rotation::transform(ObjectData &obj, float angle, char axis) {
   angle = angle / 180 * M_PI;
   size_t size = obj.vertexNumber * 3;
@@ -84,6 +110,14 @@ void s21::Rotation::transform(ObjectData &obj, float angle, char axis) {
   }
 }
 
+/**
+ * @brief A method for scaling an object
+ *
+ * @param obj - representation of data about an `.obj` file
+ * @param Sx - the scale on the x-axis
+ * @param Sy - the scale on the y-axis
+ * @param Sz - the scale on the z-axis
+ */
 void s21::Scaling::transform(ObjectData &obj, float Sx, float Sy, float Sz) {
   size_t size = obj.vertexNumber * 3;
   for (size_t i = 0; i < size; i += 3) {

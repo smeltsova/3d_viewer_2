@@ -13,7 +13,11 @@
 namespace s21 {
 
 class FileReader {
- private:
+  /**
+   * @brief A class for parsing using the singleton pattern
+   *
+   */
+private:
   FileReader() {}
   FileReader(const FileReader &) = delete;
   FileReader &operator=(const FileReader &) = delete;

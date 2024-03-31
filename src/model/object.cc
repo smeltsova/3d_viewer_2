@@ -1,5 +1,12 @@
 #include "object.h"
 
+/**
+ * @brief The method of adding a vertex
+ *
+ * @param x - the x coordinate
+ * @param y - the y coordinate
+ * @param z - the z coordinate
+ */
 void s21::ObjectData::addVertex(float x, float y, float z) {
   vertexArray.push_back(x);
   vertexArray.push_back(y);
@@ -7,12 +14,22 @@ void s21::ObjectData::addVertex(float x, float y, float z) {
   vertexNumber++;
 }
 
+/**
+ * @brief The method of adding a edge
+ *
+ * @param v1 - the first vertex
+ * @param v2 - the second vertex
+ */
 void s21::ObjectData::addEdge(unsigned v1, unsigned v2) {
   edgesArray.push_back(v1);
   edgesArray.push_back(v2);
   edgesNumber++;
 }
 
+/**
+ * @brief The method of cleaning the object of the .obj representation
+ *
+ */
 void s21::ObjectData::clear() {
   vertexArray.clear();
   edgesArray.clear();
