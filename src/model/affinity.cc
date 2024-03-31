@@ -38,7 +38,6 @@ void s21::Translation::findMinMax(ObjectData &obj) {
 }
 
 float s21::Translation::moveToCenter(ObjectData &obj) {
-  
   findMinMax(obj);
   std::array<float, 3> center = {0};
   center[0] = (obj.min[0] + obj.max[0]) / 2;
@@ -55,7 +54,8 @@ float s21::Translation::moveToCenter(ObjectData &obj) {
   return dmax;
 }
 
-void s21::Translation::transform(ObjectData &obj, float tx, float ty, float tz) {
+void s21::Translation::transform(ObjectData &obj, float tx, float ty,
+                                 float tz) {
   size_t size = obj.vertexNumber * 3;
   for (size_t i = 0; i < size; i += 3) {
     obj.vertexArray[i] += tx;

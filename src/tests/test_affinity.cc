@@ -1,17 +1,21 @@
 #include <gtest/gtest.h>
+
 #include "../model/affinity.h"
+#include "../model/parser.h"
 
 TEST(AffinityTest, AffinityTranslateTest) {
   s21::ObjectData obj = {};
-  std::array<float, 12> vertexModel = {0.4f,  1.2f,  0.98f, 1.1f,  1.22f, 1.5f,
-                          0.06f, 0.07f, 0.3f,  21.2f, 34.6f, 23.8f};
+  std::array<float, 12> vertexModel = {0.4f,  1.2f,  0.98f, 1.1f,
+                                       1.22f, 1.5f,  0.06f, 0.07f,
+                                       0.3f,  21.2f, 34.6f, 23.8f};
   for (float var : vertexModel) {
     obj.vertexArray.push_back(var);
   }
   obj.vertexNumber = 4;
-  std::array<float, 12> expectedResult = {0.9f,  2.2f,  0.68f, 1.6f,  2.22f, 1.2f,
-                          0.56f, 1.07f, 0.00f, 21.7f, 35.6f, 23.5f};
-  
+  std::array<float, 12> expectedResult = {0.9f,  2.2f,  0.68f, 1.6f,
+                                          2.22f, 1.2f,  0.56f, 1.07f,
+                                          0.00f, 21.7f, 35.6f, 23.5f};
+
   s21::Director dr;
   s21::AllTransformationBuilder allBuilder;
   s21::Transformator *tr = dr.createTransformator(allBuilder);
@@ -23,14 +27,16 @@ TEST(AffinityTest, AffinityTranslateTest) {
 
 TEST(AffinityTest, AffinityRotateX) {
   s21::ObjectData obj = {};
-  std::array<float, 12> vertexModel = {0.4f,  1.2f,  0.98f, 1.1f,  1.22f, 1.5f,
-                          0.06f, 0.07f, 0.03f,  21.2f, 34.6f, 23.8f};
+  std::array<float, 12> vertexModel = {0.4f,  1.2f,  0.98f, 1.1f,
+                                       1.22f, 1.5f,  0.06f, 0.07f,
+                                       0.03f, 21.2f, 34.6f, 23.8f};
   for (float var : vertexModel) {
     obj.vertexArray.push_back(var);
   }
   obj.vertexNumber = 4;
-  std::array<float, 12> expectedResult = {0.4f,  1.2f,  0.98f, 1.1f,  1.22f, 1.5f,
-                          0.06f, 0.07f, 0.03f, 21.2f, 34.6f, 23.8f};
+  std::array<float, 12> expectedResult = {0.4f,  1.2f,  0.98f, 1.1f,
+                                          1.22f, 1.5f,  0.06f, 0.07f,
+                                          0.03f, 21.2f, 34.6f, 23.8f};
   float angle = 90.0f;
   s21::Director dr;
   s21::AllTransformationBuilder allBuilder;
@@ -50,14 +56,16 @@ TEST(AffinityTest, AffinityRotateX) {
 
 TEST(AffinityTest, AffinityRotateY) {
   s21::ObjectData obj = {};
-  std::array<float, 12> vertexModel = {0.4f,  1.2f,  0.98f, 1.1f,  1.22f, 1.5f,
-                          0.06f, 0.07f, 0.03f,  21.2f, 34.6f, 23.8f};
+  std::array<float, 12> vertexModel = {0.4f,  1.2f,  0.98f, 1.1f,
+                                       1.22f, 1.5f,  0.06f, 0.07f,
+                                       0.03f, 21.2f, 34.6f, 23.8f};
   for (float var : vertexModel) {
     obj.vertexArray.push_back(var);
   }
   obj.vertexNumber = 4;
-  std::array<float, 12> expectedResult = {0.4f,  1.2f,  0.98f, 1.1f,  1.22f, 1.5f,
-                          0.06f, 0.07f, 0.03f, 21.2f, 34.6f, 23.8f};
+  std::array<float, 12> expectedResult = {0.4f,  1.2f,  0.98f, 1.1f,
+                                          1.22f, 1.5f,  0.06f, 0.07f,
+                                          0.03f, 21.2f, 34.6f, 23.8f};
   float angle = 90.0f;
   s21::Director dr;
   s21::AllTransformationBuilder allBuilder;
@@ -77,14 +85,16 @@ TEST(AffinityTest, AffinityRotateY) {
 
 TEST(AffinityTest, AffinityRotateZ) {
   s21::ObjectData obj = {};
-  std::array<float, 12> vertexModel = {0.4f,  1.2f,  0.98f, 1.1f,  1.22f, 1.5f,
-                          0.06f, 0.07f, 0.03f,  21.2f, 34.6f, 23.8f};
+  std::array<float, 12> vertexModel = {0.4f,  1.2f,  0.98f, 1.1f,
+                                       1.22f, 1.5f,  0.06f, 0.07f,
+                                       0.03f, 21.2f, 34.6f, 23.8f};
   for (float var : vertexModel) {
     obj.vertexArray.push_back(var);
   }
   obj.vertexNumber = 4;
-  std::array<float, 12> expectedResult = {0.4f,  1.2f,  0.98f, 1.1f,  1.22f, 1.5f,
-                          0.06f, 0.07f, 0.03f, 21.2f, 34.6f, 23.8f};
+  std::array<float, 12> expectedResult = {0.4f,  1.2f,  0.98f, 1.1f,
+                                          1.22f, 1.5f,  0.06f, 0.07f,
+                                          0.03f, 21.2f, 34.6f, 23.8f};
   float angle = 90.0f;
   s21::Director dr;
   s21::AllTransformationBuilder allBuilder;
@@ -104,14 +114,16 @@ TEST(AffinityTest, AffinityRotateZ) {
 
 TEST(AffinityTest, AffinityScaling) {
   s21::ObjectData obj = {};
-  std::array<float, 12> vertexModel = {0.4f,  1.2f,  0.98f, 1.1f,  1.22f, 1.5f,
-                          0.06f, 0.07f, 0.03f,  21.2f, 34.6f, 23.8f};
+  std::array<float, 12> vertexModel = {0.4f,  1.2f,  0.98f, 1.1f,
+                                       1.22f, 1.5f,  0.06f, 0.07f,
+                                       0.03f, 21.2f, 34.6f, 23.8f};
   for (float var : vertexModel) {
     obj.vertexArray.push_back(var);
   }
   obj.vertexNumber = 4;
-  std::array<float, 12> expectedResult = {0.2f,  1.2f,  -0.49f, 0.55f,  1.22f, -0.75f,
-                          0.03f, 0.07f, -0.015f, 10.6f, 34.6f, -11.9f};
+  std::array<float, 12> expectedResult = {0.2f,    1.2f,   -0.49f, 0.55f,
+                                          1.22f,   -0.75f, 0.03f,  0.07f,
+                                          -0.015f, 10.6f,  34.6f,  -11.9f};
 
   s21::Director dr;
   s21::AllTransformationBuilder allBuilder;
@@ -123,9 +135,39 @@ TEST(AffinityTest, AffinityScaling) {
 }
 
 TEST(AffinityTest, AffinityMoveToCenter_1) {
-  // need parser
+  s21::ObjectData obj = {};
+  s21::Director dr;
+  s21::AllTransformationBuilder allBuilder;
+  s21::Transformator *tr = dr.createTransformator(allBuilder);
+  s21::FileReader *parser = s21::FileReader::getInstance();
+  EXPECT_EQ(parser->parseObject("models/test3.obj", obj), true);
+
+  tr->translation.moveToCenter(obj);
+  EXPECT_FLOAT_EQ(obj.maxCoord, 1.1);
+
+  std::vector<float> v = {-1, -1, 0, 1, -1, 0, 1, 1, 0, -1, 1, 0};
+  std::vector<unsigned> e = {0, 1, 1, 2, 2, 3, 3, 0};
+  s21::ObjectData exp = {v, e, 4, 4, "test3.obj", {0}, {0}, 0};
+
+  for (size_t i = 0; i < 12; ++i) {
+    EXPECT_FLOAT_EQ(obj.vertexArray[i], exp.vertexArray[i]);
+  }
+  for (size_t i = 0; i < 8; ++i) {
+    EXPECT_EQ(obj.edgesArray[i], exp.edgesArray[i]);
+  }
 }
 
 TEST(AffinityTest, AffinityMoveToCenter_2) {
-  // need parser
+  s21::ObjectData obj = {};
+  s21::Director dr;
+  s21::AllTransformationBuilder allBuilder;
+  s21::Transformator *tr = dr.createTransformator(allBuilder);
+  s21::FileReader *parser = s21::FileReader::getInstance();
+  EXPECT_EQ(parser->parseObject("models/nothing.obj", obj), true);
+
+  tr->translation.moveToCenter(obj);
+  EXPECT_FLOAT_EQ(obj.maxCoord, 0);
+
+  EXPECT_EQ(obj.vertexArray.size(), 0);
+  EXPECT_EQ(obj.edgesArray.size(), 0);
 }

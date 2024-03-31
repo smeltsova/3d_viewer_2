@@ -3,13 +3,11 @@
 s21::Model::Model() {
   s21::Director dr;
   AllTransformationBuilder allBuilder;
-  tr_ = dr.createTransformator( allBuilder );
+  tr_ = dr.createTransformator(allBuilder);
   parser_ = FileReader::getInstance();
 };
 
-s21::Model::~Model() {
-  delete tr_;
-};
+s21::Model::~Model(){};
 
 void s21::Model::translate(ObjectData &obj, float tx, float ty, float tz) {
   tr_->translation.transform(obj, tx, ty, tz);
