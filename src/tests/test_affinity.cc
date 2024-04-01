@@ -168,6 +168,6 @@ TEST(AffinityTest, AffinityMoveToCenter_2) {
   tr->translation.moveToCenter(obj);
   EXPECT_FLOAT_EQ(obj.maxCoord, 0);
 
-  EXPECT_EQ(obj.vertexArray.size(), 0);
-  EXPECT_EQ(obj.edgesArray.size(), 0);
+  EXPECT_EQ(obj.vertexArray.size(), 0lu);
+  EXPECT_EQ(obj.edgesArray.size(), 0lu);
 }

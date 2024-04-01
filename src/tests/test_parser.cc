@@ -77,11 +77,10 @@ TEST(ParserTest, TestNothing) {
 
   EXPECT_EQ(fileReader->parseObject("models/nothing.obj", got), true);
   s21::ObjectData exp = {{}, {}, 0, 0, "nothing.obj", {0}, {0}, 0};
-
-  EXPECT_EQ(exp.vertexArray.size(), 0);
-  EXPECT_EQ(got.vertexArray.size(), 0);
-  EXPECT_EQ(exp.edgesArray.size(), 0);
-  EXPECT_EQ(got.edgesArray.size(), 0);
+  EXPECT_EQ(exp.vertexArray.size(), 0lu);
+  EXPECT_EQ(got.vertexArray.size(), 0lu);
+  EXPECT_EQ(exp.edgesArray.size(), 0lu);
+  EXPECT_EQ(got.edgesArray.size(), 0lu);
   EXPECT_EQ(exp.vertexNumber, got.vertexNumber);
   EXPECT_EQ(exp.edgesNumber, got.edgesNumber);
   EXPECT_EQ(exp.name, got.name);
@@ -95,12 +94,3 @@ TEST(ParserTest, TestNoFile) {
 
   EXPECT_EQ(fileReader->parseObject("nofile.obj", got), false);
 }
-
-// TEST(ParserTest, TestReadName) {
-//   s21::FileReader* fileReader = s21::FileReader::getInstance();
-//   char *got = NULL;
-
-//   EXPECT_EQ(readName("some_file.obj", got), true);
-//   EXPECT_EQ("some_file.obj", got);
-//   if (got) free(got);
-// }
