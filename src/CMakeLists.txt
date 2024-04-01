@@ -11,6 +11,10 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# only for school macs
+# set(ENV{QT_PLUGIN_PATH} "/usr/local/Qt-6.6.2/plugins/")
+# set(ENV{CMAKE_PREFIX_PATH} "/usr/local/Qt-6.6.2/") 
+
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS OpenGLWidgets)
