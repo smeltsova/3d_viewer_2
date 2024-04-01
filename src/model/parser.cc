@@ -4,18 +4,16 @@
 
 namespace s21 {
 
-  /**
-   * @brief Method for getting the FileReader object
-   *
-   * @return FileReader*
-   */
-  FileReader *FileReader::getInstance()
-  {
-    if (!instance)
-    {
-      instance = new FileReader();
-    }
-    return instance;
+/**
+ * @brief Method for getting the FileReader object
+ *
+ * @return FileReader*
+ */
+FileReader *FileReader::getInstance() {
+  if (!instance) {
+    instance = new FileReader();
+  }
+  return instance;
 }
 
 /**
@@ -116,25 +114,3 @@ void FileReader::parseFace(std::istringstream &iss, ObjectData &objectData) {
 }
 
 }  // namespace s21
-
-// int main() {
-//   // Get the singleton instance of FileReader
-//   s21::FileReader* fileReader = s21::FileReader::getInstance();
-
-//   s21::ObjectData objectData;
-//   fileReader->parseObject("cube.obj", objectData);
-
-//   // Example usage
-//   std::cout << "Vertex count: " << objectData.vertexNumber << std::endl;
-//   std::cout << "Edge count: " << objectData.edgesNumber << std::endl;
-//   std::cout << "Name: " << objectData.name << std::endl;
-
-//   fileReader->parseObject("dragon.obj", objectData);
-
-//   // Example usage
-//   std::cout << "Vertex count: " << objectData.vertexNumber << std::endl;
-//   std::cout << "Edge count: " << objectData.edgesNumber << std::endl;
-//   std::cout << "Name: " << objectData.name << std::endl;
-
-//   return 0;
-// }

@@ -17,7 +17,7 @@ class FileReader {
    * @brief A class for parsing using the singleton pattern
    *
    */
-private:
+ private:
   FileReader() {}
   FileReader(const FileReader &) = delete;
   FileReader &operator=(const FileReader &) = delete;
