@@ -22,11 +22,11 @@ build:
 	cmake -S . -B build && cmake --build build
 
 install: uninstall build
-	mkdir ~/Desktop/3D_Viewer_2
-	cp -rf ./build ~/Desktop/3D_Viewer_2
+	mkdir ~/Desktop/3D_Viewer_2.0
+	cp -rf ./build ~/Desktop/3D_Viewer_2.0
 
 uninstall:
-	rm -rf ~/Desktop/3D_Viewer_2
+	rm -rf ~/Desktop/3D_Viewer_2.0
 
 dvi: doxy
 	open docs/doxygen/html/index.html
@@ -35,6 +35,12 @@ doxy:
 	doxygen docs/Doxyfile
 
 dist:
+	mkdir 3D_Viewer_2.0
+	mkdir 3D_Viewer_2.0/src
+	cp -r controller -r model -r docs -r models -r tests -r view CMakeLists.txt main.cc Makefile 3D_Viewer_2.0/src
+	tar -cvzf 3D_Viewer_2.0.tar 3D_Viewer_2.0/
+	mv 3D_Viewer_2.0.tar ~/Desktop/3D_Viewer_2.0.tar
+	rm -rf 3D_Viewer_2.0
 
 
 gcov_report: clean
