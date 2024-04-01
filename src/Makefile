@@ -2,7 +2,7 @@ CXX = g++
 CXX_FLAGS = -std=c++17
 EFLAGS = -Wall -Werror -Wextra
 TFLAGS = -lgtest -lgtest_main
-MFLAGS = -fsanitize=address
+MFLAGS = #-fsanitize=address
 DEBUG = -g
 SRC_FILES = model/affinity.cc model/parser.cc model/object.cc model/model.cc controller/controller.cc
 TEST_FILES = tests/test_affinity.cc tests/test_parser.cc tests/test_model.cc tests/test_controller.cc
@@ -56,13 +56,13 @@ valgrind:
 
 check_style:
 	cp ../materials/linters/.clang-format .clang-format
-	clang-format -n *.h *.cc controller/*.h controller/*.cc model/*.h model/*.cc tests/*.h tests/*.cc view/*.h view/*.cc main.cc
+	clang-format -n $(shell find . -name "*.cc") $(shell find . -name "*.cpp") $(shell find . -name "*.h")
 	rm -rf .clang-format
 
 fix_style:
 	cp ../materials/linters/.clang-format .clang-format
-	clang-format -i *.h *.cc controller/*.h controller/*.cc model/*.h model/*.cc tests/*.h tests/*.cc view/*.h view/*.cc main.cc
+	clang-format -i $(shell find . -name "*.cc") $(shell find . -name "*.cpp") $(shell find . -name "*.h")
 	rm -rf .clang-format
 
 clean:
-	rm -rf *.a *.o test *.css coverage*.html gcov_report *.gcno *.gcda .clang-format build
+	rm -rf *.a *.o test *.css coverage*.html gcov_report *.gcno *.gcda .clang-format build CMakeLists.txt.user
