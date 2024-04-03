@@ -69,4 +69,4 @@ fix_style:
 	rm -rf .clang-format
 
 clean:
-	rm -rf *.a *.o test *.css coverage*.html gcov_report *.gcno *.gcda *.dSYM .clang-format build CMakeLists.txt.user
+	rm -rf *.a *.o test *.css coverage*.html gcov_report *.gcno *.gcda *.dSYM .clang-format build CMakeLists.txt.user docs/doxygen
