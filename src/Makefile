@@ -2,10 +2,14 @@ CXX = g++
 CXX_FLAGS = -std=c++17
 EFLAGS = -Wall -Werror -Wextra
 TFLAGS = -lgtest -lgtest_main
-MFLAGS = #-fsanitize=address
 DEBUG = -g
 SRC_FILES = model/affinity.cc model/parser.cc model/object.cc model/model.cc controller/controller.cc
 TEST_FILES = tests/test_affinity.cc tests/test_parser.cc tests/test_model.cc tests/test_controller.cc
+
+APP=3DViewer_2.app
+ifeq ($(shell uname), Linux)
+APP=3DViewer_2
+endif
 
 .PHONY:
 	all install uninstall dvi dist test clean gcov_report valgrind build check_style fix_style
@@ -13,7 +17,7 @@ TEST_FILES = tests/test_affinity.cc tests/test_parser.cc tests/test_model.cc tes
 all: clean tests
 
 test: clean
-	${CXX} ${CXX_FLAGS} ${EFLAGS} ${DEBUG} ${SRC_FILES} ${TEST_FILES} -o test ${MFLAGS} ${TFLAGS}
+	${CXX} ${CXX_FLAGS} ${EFLAGS} ${DEBUG} ${SRC_FILES} ${TEST_FILES} -o test ${TFLAGS}
 	./test
 
 build:
@@ -23,7 +27,7 @@ build:
 
 install: uninstall build
 	mkdir ~/Desktop/3D_Viewer_2.0
-	cp -rf ./build ~/Desktop/3D_Viewer_2.0
+	cp -rf ./build/3DViewer_2.app ~/Desktop/3D_Viewer_2.0
 
 uninstall:
 	rm -rf ~/Desktop/3D_Viewer_2.0
@@ -51,7 +55,7 @@ gcov_report: clean
 	open coverage.html
 
 valgrind:
-	${CXX} ${CXX_FLAGS} ${EFLAGS} ${DEBUG} ${SRC_FILES} ${TEST_FILES} -o test ${MFLAGS} ${TFLAGS}
+	${CXX} ${CXX_FLAGS} ${EFLAGS} ${DEBUG} ${SRC_FILES} ${TEST_FILES} -o test ${TFLAGS}
 	valgrind --leak-check=full -s test
 
 check_style:
@@ -65,4 +69,4 @@ fix_style:
 	rm -rf .clang-format
 
 clean:
-	rm -rf *.a *.o test *.css coverage*.html gcov_report *.gcno *.gcda .clang-format build CMakeLists.txt.user
+	rm -rf *.a *.o test *.css coverage*.html gcov_report *.gcno *.gcda *.dSYM .clang-format build CMakeLists.txt.user
