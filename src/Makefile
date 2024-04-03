@@ -39,9 +39,9 @@ doxy:
 	doxygen docs/Doxyfile
 
 dist:
-	mkdir 3D_Viewer_2.0
-	mkdir 3D_Viewer_2.0/src
-	cp -r controller -r model -r docs -r models -r tests -r view CMakeLists.txt main.cc Makefile 3D_Viewer_2.0/src
+	mkdir -p 3D_Viewer_2.0
+	mkdir -p 3D_Viewer_2.0/src
+	cp -rf controller model docs models tests view CMakeLists.txt main.cc Makefile 3D_Viewer_2.0/src
 	tar -cvzf 3D_Viewer_2.0.tar 3D_Viewer_2.0/
 	mv 3D_Viewer_2.0.tar ~/Desktop/3D_Viewer_2.0.tar
 	rm -rf 3D_Viewer_2.0
@@ -69,4 +69,4 @@ fix_style:
 	rm -rf .clang-format
 
 clean:
-	rm -rf *.a *.o test *.css coverage*.html gcov_report *.gcno *.gcda *.dSYM .clang-format build CMakeLists.txt.user docs/doxygen
+	rm -rf *.a *.o test *.css coverage*.html gcov_report *.gcno *.gcda *.dSYM .clang-format build CMakeLists.txt.user docs/doxygen 3D_Viewer_2.0
